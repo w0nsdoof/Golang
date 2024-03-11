@@ -1,0 +1,52 @@
+### Создание пользователя (Create User)
+POST http:/localhost:8081/api/v1/users
+Content-Type: application/json
+
+{
+  "username": "a_zhumabayev",
+  "email": "a_zhumabayev@kbtu.kz",
+  "password": "password"
+}
+
+> {%
+    client.test("Create User", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.json().username === "a_zhumabayev", "Username is incorrect");
+        client.assert(response.json().email === "a_zhumabayev@kbtu.kz", "Email is incorrect");
+    });
+%}
+
+### Получение информации о пользователе (Get User)
+GET localhost:8081/api/v1/users/1
+
+> {%
+    client.test("Get User", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.json().username === "a_zhumabayev", "Username is incorrect");
+        client.assert(response.json().email === "a_zhumabayev@kbtu.kz", "Email is incorrect");
+    });
+%}
+
+### Обновление информации о пользователе (Update User)
+PUT localhost:8081/api/v1/users/1
+Content-Type: application/json
+
+{
+  "email": "a_zhumabayev@gmail.com"
+}
+
+> {%
+    client.test("Update User", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.json().email === "a_zhumabayev@gmail.com", "Updated email is incorrect");
+    });
+%}
+
+### Удаление пользователя (Delete User)
+DELETE localhost:8081/api/v1/users/1
+
+> {%
+    client.test("Delete User", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
