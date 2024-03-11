@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS animes;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users_and_animes;
+
